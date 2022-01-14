@@ -1,0 +1,19 @@
+{
+    "name": "A-SOUL Dynamic Reminder",
+    "version": "0.0.0.1",
+    "manifest_version": 2,
+    "description": "在浏览器中实时提醒A-SOUL成员的Bilibili动态更新。",
+    "icons":{
+        "16":"icons/Diana16x16.png",
+        "32":"icons/Diana32x32.png",
+        "48":"icons/Diana48x48.png",
+        "128":"icons/Diana128x128.png"
+    },
+    "browser_action": {
+        "default_popup": "popup/popup.html"
+    },
+    "background":{
+        
+    },
+    "permissions":["storage"]
+}
