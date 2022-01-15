@@ -15,5 +15,6 @@
     "background":{
         
     },
-    "permissions":["storage"]
+    "permissions":["storage","notifications","alarms"],
+    "homepage_url":"https://github.com/Z-Bokle/A-SOUL-Dynamic-Reminder"
 }
