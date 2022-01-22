@@ -21,12 +21,12 @@ function update_settings(obj){//更新设置
     var views = chrome.extension.getViews({type:'popup'});
     if(views.length > 0) {
 	settings=obj;
-    console.log(d + "\nbackground已更新来自popup的设置");
+    console.log(Date() + "\nbackground已更新来自popup的设置");
 }
 
 }
 
-// testNoti();// 开始运行时发布测试通知
+testNoti();// 开始运行时发布测试通知
 
 function show_notification(obj,dynamic,owner){//新建通知
     var type=obj.desc.type;
@@ -146,7 +146,7 @@ function(data,status){
 chrome.alarms.onAlarm.addListener(function(alarm){
     // 向晚
     if(settings.ava==1){
-        console.log(d+"\nAvA请求数据");
+        console.log(Date()+"\nAvA请求数据");
         $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
             host_uid:672346917,
             offset_dynamic_id:0
@@ -166,7 +166,7 @@ chrome.alarms.onAlarm.addListener(function(alarm){
 
     // 贝拉
     if(settings.bella==1){
-        console.log(d+"\nBella请求数据");
+        console.log(Date()+"\nBella请求数据");
         $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
             host_uid:672353429,
             offset_dynamic_id:0
@@ -185,7 +185,7 @@ chrome.alarms.onAlarm.addListener(function(alarm){
   
     // 珈乐
     if(settings.carol==1){
-        console.log(d+"\nCarol请求数据");
+        console.log(Date()+"\nCarol请求数据");
         $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
             host_uid:351609538,
             offset_dynamic_id:0
@@ -204,7 +204,7 @@ chrome.alarms.onAlarm.addListener(function(alarm){
  
     // 嘉然
     if(settings.diana==1){
-        console.log(d+"\nDiana请求数据");
+        console.log(Date()+"\nDiana请求数据");
         $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
             host_uid:672328094,
             offset_dynamic_id:0
@@ -223,7 +223,7 @@ chrome.alarms.onAlarm.addListener(function(alarm){
   
     //乃琳
     if(settings.eileen==1){
-        console.log(d+"\nEileen请求数据");
+        console.log(Date()+"\nEileen请求数据");
         $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
             host_uid:672342685,
             offset_dynamic_id:0
@@ -242,7 +242,7 @@ chrome.alarms.onAlarm.addListener(function(alarm){
  
     //官号
     if(settings.asoul==1){
-        console.log(d+"\nASOUL请求数据");
+        console.log(Date()+"\nASOUL请求数据");
         $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
             host_uid:703007996,
             offset_dynamic_id:0
@@ -259,8 +259,6 @@ chrome.alarms.onAlarm.addListener(function(alarm){
         });           
     }
 
-    times++;
-    if(times>90) chrome.runtime.reload();
 });
 
 
