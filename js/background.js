@@ -1,6 +1,6 @@
 var d=new Date();
 var dynamic,obj;
-
+var times=0;
 chrome.alarms.create("default_alarm",{
     delayInMinutes:1,
     periodInMinutes:1
@@ -26,8 +26,7 @@ function update_settings(obj){//更新设置
 
 }
 
-testNoti();// 开始运行时发布测试通知
-
+// testNoti();// 开始运行时发布测试通知
 
 function show_notification(obj,dynamic,owner){//新建通知
     var type=obj.desc.type;
@@ -260,6 +259,8 @@ chrome.alarms.onAlarm.addListener(function(alarm){
         });           
     }
 
+    times++;
+    if(times>90) chrome.runtime.reload();
 });
 
 
