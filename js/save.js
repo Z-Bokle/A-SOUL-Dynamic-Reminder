@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
 
     default_data={'ava':1,'bella':1,'carol':1,'diana':1,'eileen':1,'asoul':1};
@@ -32,6 +33,9 @@ $(document).ready(function(){
         });
         console.log(obj);
         chrome.storage.sync.set({'data':obj},function(){console.log("保存成功");});
+        
+        var bg=chrome.extension.getBackgroundPage();
+        bg.update_settings(obj);
     })
 
 

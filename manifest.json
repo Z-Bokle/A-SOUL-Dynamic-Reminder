@@ -10,11 +10,11 @@
         "128":"icons/Diana128x128.png"
     },
     "browser_action": {
-        "default_popup": "popup/popup.html"
+        "default_popup": "popup.html"
     },
     "background":{
-        
+        "page":"background.html"
     },
-    "permissions":["storage","notifications","alarms"],
+    "permissions":["storage","notifications","alarms","http://*/","https://*/"],
     "homepage_url":"https://github.com/Z-Bokle/A-SOUL-Dynamic-Reminder"
 }

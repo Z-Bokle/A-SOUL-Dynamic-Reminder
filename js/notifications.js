@@ -1,27 +1,3 @@
-const url=new Map([
-    ['ava',"/images/240px/Q_Ava.png"],
-    ['bella',"/images/240px/Q_Bella.png"],
-    ['carol',"/images/240px/Q_Carol.png"],
-    ['diana',"/images/240px/Q_Diana.png"],
-    ['eileen',"/images/240px/Q_Eileen.png"],
-    ['asoul',"/images/240px/Cao.png"]
-]);
-
-const names=new Map([
-   ['ava','向晚'],
-   ['bella','贝拉'],
-   ['carol','珈乐'],
-   ['diana','嘉然'],
-   ['eileen','乃琳'],
-   ['asoul','A-SOUL_Official'] 
-]);
-
-$(document).ready(function(){
-    $("#noti").click(function(){
-        textNoti('ava',"晚上好兄弟们66666666666666666666666666666666666666");
-    });
-});
-
 //测试动态
 function testNoti()
 {
@@ -33,48 +9,65 @@ function testNoti()
         }
     });
 
-    var notification=new Notification("通知标题",{
-        body:"通知内容",
-        icon:url.get('asoul'),
-        image:"/images/Diana.png"
-    })
+    var notification=new Notification("动态小助手",{
+        body:"动态小助手开始运行",
+    });
+    notification.onclick=function(){
+        notification.close();
+    }
 }
 
 //文字动态
-function textNoti(target,owner,text)//点击跳转url 动态拥有者 动态文本
+function textNoti(profile,target,owner,text)//头像 点击跳转url 动态拥有者 动态文本
 {
-    console.log(names.get(owner));
-    var notification=new Notification(names.get(owner)+"发布了新的文字动态",{
+    console.log(owner);
+    var notification=new Notification(owner+"发布了新的文字动态",{
         body:text,
-        icon:url.get(owner),
-    })
+        icon:profile,
+    });
+    notification.onclick=function(){
+        window.open(target);
+        notification.close();
+    }
 }
 
-function pictureNoti(target,owner,text,pic)//点击跳转url 动态拥有者 动态文本 图片url
+function pictureNoti(profile,target,owner,text,pic)//头像 点击跳转url 动态拥有者 动态文本 图片url
 {
-    console.log(names.get(owner));
-    var notifiction=new Notification(names.get(owner)+"发布了新的图片动态",{
+    console.log(owner);
+    var notification=new Notification(owner+"发布了新的图片动态",{
         body:text,
-        icon:url.get(owner),
+        icon:profile,
         image:pic
-    })
+    });
+    notification.onclick=function(){
+        window.open(target);
+        notification.close();
+    }
 }
 
-function videoNoti(target,owner,text,pic)//点击跳转url 动态拥有者 动态文本 图片url
+function videoNoti(profile,target,owner,text,pic)//头像 点击跳转url 动态拥有者 动态文本 图片url
 {
-    console.log(names.get(owner));
-    var notifiction=new Notification(names.get(owner)+"发布了新的视频动态",{
+    console.log(owner);
+    var notification=new Notification(owner+"发布了新的视频动态",{
         body:text,
-        icon:url.get(owner),
+        icon:profile,
         image:pic
-    })
+    });
+    notification.onclick=function(){
+        window.open(target);
+        notification.close();
+    }
 }
 
-function forwardNoti(target,owner,text)
+function forwardNoti(profile,target,owner,text)
 {
-    console.log(names.get(owner));
-    var notification=new Notification(names.get(owner)+"转发了动态",{
+    console.log(owner);
+    var notification=new Notification(owner+"转发了动态",{
         body:text,
-        icon:url.get(owner),
-    })
+        icon:profile,
+    });
+    notification.onclick=function(){
+        window.open(target);
+        notification.close();
+    }
 }
