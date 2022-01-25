@@ -71,3 +71,46 @@ function forwardNoti(profile,target,owner,text)
         notification.close();
     }
 }
+
+function columnNoti(profile,target,owner,text,pic)
+{
+    console.log(owner);
+    var notification=new Notification(owner+"发布了专栏",{
+        body:text,
+        icon:profile,
+        image:pic
+    });
+    notification.onclick=function(){
+        window.open(target);
+        notification.close();
+    }
+}
+
+function liveNoti(type,profile,target,owner,topic,pic)
+{
+    console.log(owner);
+    if(type==1)//标题修改
+    {
+        var notification=new Notification(owner+"直播间标题修改",{
+            body:"直播间标题修改为 "+topic,
+            icon:profile,
+            image:pic
+        });
+        notification.onclick=function(){
+            window.open(target);
+            notification.close();
+        }
+    }
+    if(type==2)//开播提醒
+    {
+        var notification=new Notification(owner+"开始直播",{
+            body:topic,
+            icon:profile,
+            image:pic
+        });
+        notification.onclick=function(){
+            window.open(target);
+            notification.close();
+        }
+    }
+}
