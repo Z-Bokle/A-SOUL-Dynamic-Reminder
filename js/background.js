@@ -76,7 +76,7 @@ function show_notification(obj,dynamic,owner){//新建通知
             obj.desc.user_profile.info.face,
             "https://www.bilibili.com/video/"+obj.desc.bvid,
             obj.desc.user_profile.info.uname,
-            dynamic.desc,
+            dynamic.title,
             dynamic.first_frame
             );
     if(type==64)// 专栏动态
