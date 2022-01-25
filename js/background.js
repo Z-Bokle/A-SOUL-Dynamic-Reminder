@@ -539,7 +539,7 @@ chrome.alarms.onAlarm.addListener(function(alarm){
                     1,
                     ".\\images\\240px\\Cao.png",
                     "https://live.bilibili.com/"+data.data.room_id,
-                    "乃琳",
+                    "官号",
                     data.data.title,
                     data.data.user_cover
                 );                
@@ -551,7 +551,7 @@ chrome.alarms.onAlarm.addListener(function(alarm){
                     2,
                     ".\\images\\240px\\Cao.png",
                     "https://live.bilibili.com/"+data.data.room_id,
-                    "乃琳",
+                    "官号",
                     data.data.title,
                     data.data.user_cover
                 );  
