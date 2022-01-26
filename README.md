@@ -1,4 +1,5 @@
 # A-SOUL-Dynamic-Reminder
+readme开摆了，能看明白就行_(:з」∠)_  
 
 ## 注意事项  
 1.该插件在Windows 10 + Microsoft Edge平台上开发并测试，其他平台暂未做过测试，Chrome及使用其内核的浏览器理论上兼容；  
