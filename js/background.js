@@ -265,7 +265,7 @@ chrome.alarms.onAlarm.addListener(function(alarm){
             console.log("dynamic "+status);
             obj=data.data.cards[0];
             dynamic=JSON.parse(obj.card);
-            if(dynamic_id.ava!=obj.desc.dynamic_id_str)
+            if(dynamic_id.ava<obj.desc.dynamic_id_str)
             {
                 dynamic_id.ava=obj.desc.dynamic_id_str;
                 show_notification(obj,dynamic,"向晚");
@@ -317,7 +317,7 @@ chrome.alarms.onAlarm.addListener(function(alarm){
             console.log("dynamic "+status);
             obj=data.data.cards[0];
             dynamic=JSON.parse(obj.card);
-            if(dynamic_id.bella!=obj.desc.dynamic_id_str)
+            if(dynamic_id.bella<obj.desc.dynamic_id_str)
             {
                 dynamic_id.bella=obj.desc.dynamic_id_str;
                 show_notification(obj,dynamic,"贝拉");
@@ -368,7 +368,7 @@ chrome.alarms.onAlarm.addListener(function(alarm){
             console.log("dynamic "+status);
             obj=data.data.cards[0];
             dynamic=JSON.parse(obj.card);
-            if(dynamic_id.carol!=obj.desc.dynamic_id_str)
+            if(dynamic_id.carol<obj.desc.dynamic_id_str)
             {
                 dynamic_id.carol=obj.desc.dynamic_id_str;
                 show_notification(obj,dynamic,"珈乐");
@@ -419,7 +419,7 @@ chrome.alarms.onAlarm.addListener(function(alarm){
             console.log("dynamic "+status);
             obj=data.data.cards[0];
             dynamic=JSON.parse(obj.card);
-            if(dynamic_id.diana!=obj.desc.dynamic_id_str)
+            if(dynamic_id.diana<obj.desc.dynamic_id_str)
             {
                 dynamic_id.diana=obj.desc.dynamic_id_str;
                 show_notification(obj,dynamic,"嘉然");
@@ -470,7 +470,7 @@ chrome.alarms.onAlarm.addListener(function(alarm){
             console.log("dynamic "+status);
             obj=data.data.cards[0];
             dynamic=JSON.parse(obj.card);
-            if(dynamic_id.eileen!=obj.desc.dynamic_id_str)
+            if(dynamic_id.eileen<obj.desc.dynamic_id_str)
             {
                 dynamic_id.eileen=obj.desc.dynamic_id_str;
                 show_notification(obj,dynamic,"乃琳");
@@ -521,7 +521,7 @@ chrome.alarms.onAlarm.addListener(function(alarm){
             console.log("dynamic "+status);
             obj=data.data.cards[0];
             dynamic=JSON.parse(obj.card);
-            if(dynamic_id.asoul!=obj.desc.dynamic_id_str)
+            if(dynamic_id.asoul<obj.desc.dynamic_id_str)
             {
                 dynamic_id.asoul=obj.desc.dynamic_id_str;
                 show_notification(obj,dynamic,"A-SOUL官号");
