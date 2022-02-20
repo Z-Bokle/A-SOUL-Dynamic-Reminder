@@ -35,6 +35,8 @@ var last_live_status={
 
 var settings={'ava':1,'bella':1,'carol':1,'diana':1,'eileen':1,'asoul':1};//是否启用通知
 
+var init_status={'ava':0,'bella':0,'carol':0,'diana':0,'eileen':0,'asoul':0}//初始化成功项目数(每人最多两项)
+
 function update_settings(obj){//更新设置
     var views = chrome.extension.getViews({type:'popup'});
     if(views.length > 0) {
@@ -44,7 +46,49 @@ function update_settings(obj){//更新设置
 
 }
 
-//testNoti();// 开始运行时发布测试通知
+function Test(num)//在控制台测试一系列通知,以向晚为例
+{
+    if(num==0)//测试直播间标题更新
+    $.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22625025},
+    function(data,status){
+        console.log("live "+status);
+        liveNoti(
+            1,
+            ".\\images\\240px\\Q_Ava.png",
+            "https://live.bilibili.com/"+data.data.room_id,
+            "向晚",
+            data.data.title,
+            data.data.user_cover
+        );
+    });
+
+    if(num==1)//开播
+    $.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22625025},
+    function(data,status){
+        console.log("live "+status);
+        liveNoti(
+            2,
+            ".\\images\\240px\\Q_Ava.png",
+            "https://live.bilibili.com/"+data.data.room_id,
+            "向晚",
+            data.data.title,
+            data.data.user_cover
+        );
+    });
+
+    if(num==2)//测试最新一条动态
+    $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
+        host_uid:672346917,
+        offset_dynamic_id:0
+    },
+    function(data,status){
+        console.log("dynamic "+status);
+        obj=data.data.cards[0];
+        dynamic=JSON.parse(obj.card);
+        dynamic_id.ava=obj.desc.dynamic_id_str;
+        show_notification(obj,dynamic,"向晚");
+    }); 
+}
 
 function show_notification(obj,dynamic,owner){//新建通知
     var type=obj.desc.type;
@@ -97,164 +141,150 @@ function show_notification(obj,dynamic,owner){//新建通知
             );
 }
 
-console.log("AvA信息已同步");
-$.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
-    host_uid:672346917,
-    offset_dynamic_id:0
-},
-function(data,status){
-    console.log(status);
-    obj=data.data.cards[0];
-    dynamic=JSON.parse(obj.card);
-    dynamic_id.ava=obj.desc.dynamic_id_str;
-});  
-$.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22625025},
-function(data,status){
-    console.log("live "+status);
-    live_topic.ava=data.data.title;
-    last_live_status.ava=data.data.live_status;
-});
-
-console.log("Bella信息已同步");
-$.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
-    host_uid:672353429,
-    offset_dynamic_id:0
-},
-function(data,status){
-    console.log(status);
-    obj=data.data.cards[0];
-    dynamic=JSON.parse(obj.card);
-    dynamic_id.bella=obj.desc.dynamic_id_str;
-});    
-$.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22632424},
-function(data,status){
-    console.log("live "+status);
-    live_topic.bella=data.data.title;
-    last_live_status.bella=data.data.live_status;
-});
-
-console.log("Carol信息已同步");
-$.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
-    host_uid:351609538,
-    offset_dynamic_id:0
-},
-function(data,status){
-    console.log(status);
-    obj=data.data.cards[0];
-    dynamic=JSON.parse(obj.card);
-    dynamic_id.carol=obj.desc.dynamic_id_str;
-});   
-$.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22634198},
-function(data,status){
-    console.log("live "+status);
-    live_topic.carol=data.data.title;
-    last_live_status.carol=data.data.live_status;
-});
-
-console.log("Diana信息已同步");
-$.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
-    host_uid:672328094,
-    offset_dynamic_id:0
-},
-function(data,status){
-    console.log(status);
-    obj=data.data.cards[0];
-    dynamic=JSON.parse(obj.card);
-    dynamic_id.diana=obj.desc.dynamic_id_str;
-});   
-$.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22637261},
-function(data,status){
-    console.log("live "+status);
-    live_topic.diana=data.data.title;
-    last_live_status.diana=data.data.live_status;
-});
-
-console.log("Eileen信息已同步");
-$.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
-    host_uid:672342685,
-    offset_dynamic_id:0
-},
-function(data,status){
-    console.log(status);
-    obj=data.data.cards[0];
-    dynamic=JSON.parse(obj.card);
-    dynamic_id.eileen=obj.desc.dynamic_id_str;
-});   
-$.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22625027},
-function(data,status){
-    console.log("live "+status);
-    live_topic.eileen=data.data.title;
-    last_live_status.eileen=data.data.live_status;
-});
-
-console.log("ASOUL信息已同步");
-$.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
-    host_uid:703007996,
-    offset_dynamic_id:0
-},
-function(data,status){
-    console.log(status);
-    obj=data.data.cards[0];
-    dynamic=JSON.parse(obj.card);
-    if(dynamic_id.asoul!=obj.desc.dynamic_id_str)
-    dynamic_id.asoul=obj.desc.dynamic_id_str;
-});  
-$.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22632157},
-function(data,status){
-    console.log("live "+status);
-    live_topic.asoul=data.data.title;
-    last_live_status.asoul=data.data.live_status;
-}); 
-
-function Test(num)//在控制台测试一系列通知,以向晚为例
-{
-    if(num==0)//测试直播间标题更新
-    $.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22625025},
-    function(data,status){
-        console.log("live "+status);
-        liveNoti(
-            1,
-            ".\\images\\240px\\Q_Ava.png",
-            "https://live.bilibili.com/"+data.data.room_id,
-            "向晚",
-            data.data.title,
-            data.data.user_cover
-        );
-    });
-
-    if(num==1)//开播
-    $.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22625025},
-    function(data,status){
-        console.log("live "+status);
-        liveNoti(
-            2,
-            ".\\images\\240px\\Q_Ava.png",
-            "https://live.bilibili.com/"+data.data.room_id,
-            "向晚",
-            data.data.title,
-            data.data.user_cover
-        );
-    });
-
-    if(num==2)//测试最新一条动态
-    $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
-        host_uid:672346917,
-        offset_dynamic_id:0
-    },
-    function(data,status){
-        console.log("dynamic "+status);
-        obj=data.data.cards[0];
-        dynamic=JSON.parse(obj.card);
-        dynamic_id.ava=obj.desc.dynamic_id_str;
-        show_notification(obj,dynamic,"向晚");
-    }); 
-}
-
 
 
 chrome.alarms.onAlarm.addListener(function(alarm){
+
+    if(init_status.ava!=2)
+    {
+        init_status.ava=0;
+        console.log("AvA信息已同步");
+        $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
+            host_uid:672346917,
+            offset_dynamic_id:0
+        },
+        function(data,status){
+            obj=data.data.cards[0];
+            dynamic=JSON.parse(obj.card);
+            dynamic_id.ava=obj.desc.dynamic_id_str;
+            if(status=='success') init_status.ava++;
+        });  
+
+        $.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22625025},
+        function(data,status){
+            live_topic.ava=data.data.title;
+            last_live_status.ava=data.data.live_status;
+            if(status=='success') init_status.ava++;
+        });
+    }
+
+    if(init_status.bella!=2)
+    {
+        init_status.bella=0;
+        console.log("Bella信息已同步");
+        $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
+            host_uid:672353429,
+            offset_dynamic_id:0
+        },
+        function(data,status){
+            obj=data.data.cards[0];
+            dynamic=JSON.parse(obj.card);
+            dynamic_id.bella=obj.desc.dynamic_id_str;
+            if(status=='success') init_status.bella++;
+        });    
+
+        $.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22632424},
+        function(data,status){
+            live_topic.bella=data.data.title;
+            last_live_status.bella=data.data.live_status;
+            if(status=='success') init_status.bella++;
+        });
+    }
+
+    if(init_status.carol!=2)
+    {
+        init_status.carol=0;
+        console.log("Carol信息已同步");
+        $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
+            host_uid:351609538,
+            offset_dynamic_id:0
+        },
+        function(data,status){
+            obj=data.data.cards[0];
+            dynamic=JSON.parse(obj.card);
+            dynamic_id.carol=obj.desc.dynamic_id_str;
+            if(status=='success') init_status.carol++;
+        }); 
+
+        $.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22634198},
+        function(data,status){
+            live_topic.carol=data.data.title;
+            last_live_status.carol=data.data.live_status;
+            if(status=='success') init_status.carol++;
+        });
+    }
+
+    if(init_status.diana!=2)
+    {
+        init_status.diana=0;
+        console.log("Diana信息已同步");
+        $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
+            host_uid:672328094,
+            offset_dynamic_id:0
+        },
+        function(data,status){
+            obj=data.data.cards[0];
+            dynamic=JSON.parse(obj.card);
+            dynamic_id.diana=obj.desc.dynamic_id_str;
+            if(status=='success') init_status.diana++;
+        });   
+
+        $.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22637261},
+        function(data,status){
+            live_topic.diana=data.data.title;
+            last_live_status.diana=data.data.live_status;
+            if(status=='success') init_status.diana++;
+        });
+    }
+    
+    if(init_status.eileen!=2)
+    {
+        init_status.eileen=0;
+        console.log("Eileen信息已同步");
+        $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
+            host_uid:672342685,
+            offset_dynamic_id:0
+        },
+        function(data,status){
+            obj=data.data.cards[0];
+            dynamic=JSON.parse(obj.card);
+            dynamic_id.eileen=obj.desc.dynamic_id_str;
+            if(status=='success') init_status.eileen++;
+        });   
+
+        $.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22625027},
+        function(data,status){
+            live_topic.eileen=data.data.title;
+            last_live_status.eileen=data.data.live_status;
+            if(status=='success') init_status.eileen++;
+        });
+    }
+
+    if(init_status.asoul!=2)
+    {
+        init_status.asoul=0;
+        console.log("ASOUL信息已同步");
+        $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
+            host_uid:703007996,
+            offset_dynamic_id:0
+        },
+        function(data,status){
+            obj=data.data.cards[0];
+            dynamic=JSON.parse(obj.card);
+            dynamic_id.asoul=obj.desc.dynamic_id_str;
+            if(status=='success') init_status.asoul++;
+        });  
+
+        $.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22632157},
+        function(data,status){
+            live_topic.asoul=data.data.title;
+            last_live_status.asoul=data.data.live_status;
+            if(status=='success') init_status.asoul++;
+        }); 
+    }
+
     // 向晚
-    if(settings.ava==1){
+    if(settings.ava==1&&init_status.ava==2){
         console.log(Date()+"\nAvA请求数据");
         // 个人动态
         $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
@@ -306,7 +336,7 @@ chrome.alarms.onAlarm.addListener(function(alarm){
     }
 
     // 贝拉
-    if(settings.bella==1){
+    if(settings.bella==1&&init_status.bella==2){
         console.log(Date()+"\nBella请求数据");
         //个人动态
         $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
@@ -358,7 +388,7 @@ chrome.alarms.onAlarm.addListener(function(alarm){
     }
   
     // 珈乐
-    if(settings.carol==1){
+    if(settings.carol==1&&init_status.carol==2){
         console.log(Date()+"\nCarol请求数据");
         $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
             host_uid:351609538,
@@ -409,7 +439,7 @@ chrome.alarms.onAlarm.addListener(function(alarm){
     }
  
     // 嘉然
-    if(settings.diana==1){
+    if(settings.diana==1&&init_status.diana==2){
         console.log(Date()+"\nDiana请求数据");
         $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
             host_uid:672328094,
@@ -460,7 +490,7 @@ chrome.alarms.onAlarm.addListener(function(alarm){
     }
   
     // 乃琳
-    if(settings.eileen==1){
+    if(settings.eileen==1&&init_status.eileen==2){
         console.log(Date()+"\nEileen请求数据");
         $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
             host_uid:672342685,
@@ -511,7 +541,7 @@ chrome.alarms.onAlarm.addListener(function(alarm){
     }
  
     // 官号
-    if(settings.asoul==1){
+    if(settings.asoul==1&&init_status.asoul==2){
         console.log(Date()+"\nASOUL请求数据");
         $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
             host_uid:703007996,
