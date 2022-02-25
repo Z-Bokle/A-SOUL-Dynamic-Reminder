@@ -10,7 +10,7 @@ function testNoti()
     });
 
     var notification=new Notification("动态小助手",{
-        body:"动态小助手开始运行",
+        body:"动态小助手正在运行",
     });
     notification.onclick=function(){
         notification.close();
@@ -18,71 +18,106 @@ function testNoti()
 }
 
 //文字动态
-function textNoti(profile,target,owner,text)//头像 点击跳转url 动态拥有者 动态文本
+function textNoti(profile,target,owner,text,sound)//头像 点击跳转url 动态拥有者 动态文本 启用个性语音
 {
     console.log(owner);
     var notification=new Notification(owner+"发布了新的文字动态",{
         body:text,
         icon:profile,
+        silent:sound
     });
     notification.onclick=function(){
         window.open(target);
         notification.close();
     }
+    notification.onshow=function(){
+        var td=new Date();
+        var audio = new Audio('./audio/' + owner + td.getTime()%2 + '.wav');
+        if(sound)
+        audio.play();
+    }
 }
 
-function pictureNoti(profile,target,owner,text,pic)//头像 点击跳转url 动态拥有者 动态文本 图片url
+function pictureNoti(profile,target,owner,text,pic,sound)//头像 点击跳转url 动态拥有者 动态文本 图片url 启用个性语音
 {
     console.log(owner);
     var notification=new Notification(owner+"发布了新的图片动态",{
         body:text,
         icon:profile,
-        image:pic
+        image:pic,
+        silent:sound
     });
     notification.onclick=function(){
         window.open(target);
         notification.close();
     }
+    notification.onshow=function(){
+        var td=new Date();
+        var audio = new Audio('./audio/' + owner + td.getTime()%2 + '.wav');
+        if(sound)
+        audio.play();
+    }
 }
 
-function videoNoti(profile,target,owner,text,pic)//头像 点击跳转url 动态拥有者 动态文本 图片url
+function videoNoti(profile,target,owner,text,pic,sound)//头像 点击跳转url 动态拥有者 动态文本 图片url 启用个性语音
 {
     console.log(owner);
     var notification=new Notification(owner+"发布了新的视频动态",{
         body:text,
         icon:profile,
-        image:pic
+        image:pic,
+        silent:sound
     });
     notification.onclick=function(){
         window.open(target);
         notification.close();
     }
+    notification.onshow=function(){
+        var td=new Date();
+        var audio = new Audio('./audio/' + owner + td.getTime()%2 + '.wav');
+        if(sound)
+        audio.play();
+    }
 }
 
-function forwardNoti(profile,target,owner,text)
+function forwardNoti(profile,target,owner,text,sound)
 {
     console.log(owner);
     var notification=new Notification(owner+"转发了动态",{
         body:text,
         icon:profile,
+        silent:sound
     });
     notification.onclick=function(){
         window.open(target);
         notification.close();
     }
+    notification.onshow=function(){
+        var td=new Date();
+        var audio = new Audio('./audio/' + owner + td.getTime()%2 + '.wav');
+        if(sound)
+        audio.play();
+    }
 }
 
-function columnNoti(profile,target,owner,text,pic)
+function columnNoti(profile,target,owner,text,pic,sound)
 {
     console.log(owner);
     var notification=new Notification(owner+"发布了专栏",{
         body:text,
         icon:profile,
-        image:pic
+        image:pic,
+        silent:sound
     });
     notification.onclick=function(){
         window.open(target);
         notification.close();
+    }
+    notification.onshow=function(){
+        var td=new Date();
+        var audio = new Audio('./audio/' + owner + td.getTime()%2 + '.wav');
+        if(sound)
+        audio.play();
     }
 }
 

@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
 
-    default_data={'ava':1,'bella':1,'carol':1,'diana':1,'eileen':1,'asoul':1};
+    default_data={'ava':1,'bella':1,'carol':1,'diana':1,'eileen':1,'asoul':1,'sound':1};
     // 读取设置
         chrome.storage.sync.get({'data':default_data},function(result){
             if($("input[id='avaCB']").prop("checked")!=result['data'].ava) $("input[id='avaCB']").click();
@@ -10,6 +10,7 @@ $(document).ready(function(){
             if($("input[id='dianaCB']").prop("checked")!=result['data'].diana) $("input[id='dianaCB']").click();
             if($("input[id='eileenCB']").prop("checked")!=result['data'].eileen) $("input[id='eileenCB']").click();
             if($("input[id='asoulCB']").prop("checked")!=result['data'].asoul) $("input[id='asoulCB']").click();
+            if($("input[id='soundCB']").prop("checked")!=result['data'].sound) $("input[id='soundCB']").click();
         });
 
     // 全选
@@ -25,7 +26,7 @@ $(document).ready(function(){
 
     // 保存设置
     $("#save").click(function(){ 
-        var obj={'ava':0,'bella':0,'carol':0,'diana':0,'eileen':0,'asoul':0};
+        var obj={'ava':0,'bella':0,'carol':0,'diana':0,'eileen':0,'asoul':0,'sound':0};
         $("input[type='checkbox']").each(function(){
             var name=$(this).val();
             var state=$(this).prop("checked");

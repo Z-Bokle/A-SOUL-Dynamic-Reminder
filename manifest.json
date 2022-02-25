@@ -1,6 +1,6 @@
 {
     "name": "A-SOUL Dynamic Reminder",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "manifest_version": 2,
     "description": "在浏览器中实时提醒A-SOUL成员的Bilibili动态更新以及直播信息。",
     "icons":{

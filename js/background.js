@@ -33,7 +33,7 @@ var last_live_status={
     asoul:0
 }// 上一次开播状态
 
-var settings={'ava':1,'bella':1,'carol':1,'diana':1,'eileen':1,'asoul':1};//是否启用通知
+var settings={'ava':1,'bella':1,'carol':1,'diana':1,'eileen':1,'asoul':1,'sound':1};//是否启用通知/个性化语音
 
 var init_status={'ava':0,'bella':0,'carol':0,'diana':0,'eileen':0,'asoul':0}//初始化成功项目数(每人最多两项)
 
@@ -90,7 +90,7 @@ function Test(num)//在控制台测试一系列通知,以向晚为例
     }); 
 }
 
-function show_notification(obj,dynamic,owner){//新建通知
+function show_notification(obj,dynamic,owner){//新建动态通知
     var type=obj.desc.type;
 
     if(type==1)// 转发
@@ -98,7 +98,8 @@ function show_notification(obj,dynamic,owner){//新建通知
             dynamic.user.face,
             "https://t.bilibili.com/"+obj.desc.dynamic_id_str,
             dynamic.user.uname,
-            dynamic.item.content
+            dynamic.item.content,
+            settings.sound
             );
     if(type==2)// 图片动态
         pictureNoti(
@@ -106,14 +107,16 @@ function show_notification(obj,dynamic,owner){//新建通知
             "https://t.bilibili.com/"+obj.desc.dynamic_id_str,
             dynamic.user.name,
             dynamic.item.description,
-            dynamic.item.pictures[0].img_src
+            dynamic.item.pictures[0].img_src,
+            settings.sound
             );
     if(type==4)// 文字动态
         textNoti(
             dynamic.user.face,
             "https://t.bilibili.com/"+obj.desc.dynamic_id_str,
             dynamic.user.uname,
-            dynamic.item.content
+            dynamic.item.content,
+            settings.sound
             );
     if(type==8)// 视频动态
         videoNoti(
@@ -121,7 +124,8 @@ function show_notification(obj,dynamic,owner){//新建通知
             "https://www.bilibili.com/video/"+obj.desc.bvid,
             obj.desc.user_profile.info.uname,
             dynamic.title,
-            dynamic.first_frame
+            dynamic.first_frame,
+            settings.sound
             );
     if(type==64)// 专栏动态
         columnNoti(
@@ -129,7 +133,8 @@ function show_notification(obj,dynamic,owner){//新建通知
             "https://www.bilibili.com/read/cv"+dynamic.id,
             obj.desc.user_profile.info.uname,
             dynamic.title,
-            dynamic.origin_image_urls[0]
+            dynamic.origin_image_urls[0],
+            settings.sound
             );
 
     if(type>64)// 其他类型
@@ -137,7 +142,8 @@ function show_notification(obj,dynamic,owner){//新建通知
             null,
             "https://t.bilibili.com/"+obj.desc.dynamic_id_str,
             owner,
-            "请点击通知跳转到动态页面"
+            "请点击通知跳转到动态页面",
+            settings.sound
             );
 }
 
