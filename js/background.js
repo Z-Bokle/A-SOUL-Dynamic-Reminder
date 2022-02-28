@@ -46,49 +46,6 @@ function update_settings(obj){//更新设置
 
 }
 
-function Test(num)//在控制台测试一系列通知,以向晚为例
-{
-    if(num==0)//测试直播间标题更新
-    $.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22625025},
-    function(data,status){
-        console.log("live "+status);
-        liveNoti(
-            1,
-            ".\\images\\240px\\Q_Ava.png",
-            "https://live.bilibili.com/"+data.data.room_id,
-            "向晚",
-            data.data.title,
-            data.data.user_cover
-        );
-    });
-
-    if(num==1)//开播
-    $.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22625025},
-    function(data,status){
-        console.log("live "+status);
-        liveNoti(
-            2,
-            ".\\images\\240px\\Q_Ava.png",
-            "https://live.bilibili.com/"+data.data.room_id,
-            "向晚",
-            data.data.title,
-            data.data.user_cover
-        );
-    });
-
-    if(num==2)//测试最新一条动态
-    $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
-        host_uid:672346917,
-        offset_dynamic_id:0
-    },
-    function(data,status){
-        console.log("dynamic "+status);
-        obj=data.data.cards[0];
-        dynamic=JSON.parse(obj.card);
-        dynamic_id.ava=obj.desc.dynamic_id_str;
-        show_notification(obj,dynamic,"向晚");
-    }); 
-}
 
 function show_notification(obj,dynamic,owner){//新建动态通知
     var type=obj.desc.type;
@@ -146,7 +103,6 @@ function show_notification(obj,dynamic,owner){//新建动态通知
             settings.sound
             );
 }
-
 
 
 chrome.alarms.onAlarm.addListener(function(alarm){

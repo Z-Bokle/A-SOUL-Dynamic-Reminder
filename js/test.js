@@ -1,0 +1,177 @@
+/**
+该文件用于测试通知内容
+不需要测试或正式发布时应当保留在插件中
+但可以不加载进background.html文件中
+测试时，在控制台输入
+    test.通知类型.账号名()
+即可立刻弹出需要的通知
+*/
+
+var test={
+    live_topic:{//测试直播间标题
+        ava:function(){
+                $.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22625025},
+                function(data,status){
+                console.log("live "+status);
+                liveNoti(
+                    1,
+                    ".\\images\\240px\\Q_Ava.png",
+                    "https://live.bilibili.com/"+data.data.room_id,
+                    "向晚",
+                    data.data.title,
+                    data.data.user_cover
+                );
+            })
+        },
+        bella:function(){
+                $.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22632424},
+                function(data,status){
+                console.log("live "+status);
+                liveNoti(
+                    1,
+                    ".\\images\\240px\\Q_Bella.png",
+                    "https://live.bilibili.com/"+data.data.room_id,
+                    "贝拉",
+                    data.data.title,
+                    data.data.user_cover
+                );
+            })
+        },
+        carol:function(){
+                $.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22634198},
+                function(data,status){
+                console.log("live "+status);
+                liveNoti(
+                    1,
+                    ".\\images\\240px\\Q_Carol.png",
+                    "https://live.bilibili.com/"+data.data.room_id,
+                    "珈乐",
+                    data.data.title,
+                    data.data.user_cover
+                );
+            })
+        },
+        diana:function(){
+                $.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22637261},
+                function(data,status){
+                console.log("live "+status);
+                liveNoti(
+                    1,
+                    ".\\images\\240px\\Q_Diana.png",
+                    "https://live.bilibili.com/"+data.data.room_id,
+                    "嘉然",
+                    data.data.title,
+                    data.data.user_cover
+                );
+            })
+        },
+        eileen:function(){
+                $.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22625027},
+                function(data,status){
+                console.log("live "+status);
+                liveNoti(
+                    1,
+                    ".\\images\\240px\\Q_Eileen.png",
+                    "https://live.bilibili.com/"+data.data.room_id,
+                    "乃琳",
+                    data.data.title,
+                    data.data.user_cover
+                );
+            })
+        },
+        asoul:function(){
+                $.get("https://api.live.bilibili.com/room/v1/Room/get_info",{id:22632157},
+                function(data,status){
+                console.log("live "+status);
+                liveNoti(
+                    1,
+                    ".\\images\\240px\\Cao.png",
+                    "https://live.bilibili.com/"+data.data.room_id,
+                    "官号",
+                    data.data.title,
+                    data.data.user_cover
+                );
+            })
+        }
+    },
+    dynamic:{//测试最新一条动态
+        ava:function(){
+            $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
+                host_uid:672346917,
+                offset_dynamic_id:0
+            },
+            function(data,status){
+                console.log("dynamic "+status);
+                obj=data.data.cards[0];
+                dynamic=JSON.parse(obj.card);
+                dynamic_id.ava=obj.desc.dynamic_id_str;
+                show_notification(obj,dynamic,"向晚");
+            })
+        },
+        bella:function(){
+            $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
+                host_uid:672353429,
+                offset_dynamic_id:0
+            },
+            function(data,status){
+                console.log("dynamic "+status);
+                obj=data.data.cards[0];
+                dynamic=JSON.parse(obj.card);
+                dynamic_id.ava=obj.desc.dynamic_id_str;
+                show_notification(obj,dynamic,"向晚");
+            })
+        },
+        carol:function(){
+            $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
+                host_uid:351609538,
+                offset_dynamic_id:0
+            },
+            function(data,status){
+                console.log("dynamic "+status);
+                obj=data.data.cards[0];
+                dynamic=JSON.parse(obj.card);
+                dynamic_id.ava=obj.desc.dynamic_id_str;
+                show_notification(obj,dynamic,"向晚");
+            })
+        },
+        diana:function(){
+            $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
+                host_uid:672328094,
+                offset_dynamic_id:0
+            },
+            function(data,status){
+                console.log("dynamic "+status);
+                obj=data.data.cards[0];
+                dynamic=JSON.parse(obj.card);
+                dynamic_id.ava=obj.desc.dynamic_id_str;
+                show_notification(obj,dynamic,"向晚");
+            })
+        },
+        eileen:function(){
+            $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
+                host_uid:672342685,
+                offset_dynamic_id:0
+            },
+            function(data,status){
+                console.log("dynamic "+status);
+                obj=data.data.cards[0];
+                dynamic=JSON.parse(obj.card);
+                dynamic_id.ava=obj.desc.dynamic_id_str;
+                show_notification(obj,dynamic,"向晚");
+            })
+        },
+        asoul:function(){
+            $.get("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history",{
+                host_uid:703007996,
+                offset_dynamic_id:0
+            },
+            function(data,status){
+                console.log("dynamic "+status);
+                obj=data.data.cards[0];
+                dynamic=JSON.parse(obj.card);
+                dynamic_id.ava=obj.desc.dynamic_id_str;
+                show_notification(obj,dynamic,"向晚");
+            })
+        }
+    }
+}
