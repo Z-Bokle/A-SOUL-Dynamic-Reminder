@@ -32,7 +32,7 @@ function textNoti(profile,target,owner,text,sound)//头像 点击跳转url 动�
     }
     notification.onshow=function(){
         var td=new Date();
-        var audio = new Audio('./audio/' + owner + td.getTime()%2 + '.wav');
+        var audio = new Audio('./audio/' + name_2_letter[owner] + td.getTime()%2 + '.wav');
         if(sound)
         audio.play();
     }
@@ -53,7 +53,7 @@ function pictureNoti(profile,target,owner,text,pic,sound)//头像 点击跳转ur
     }
     notification.onshow=function(){
         var td=new Date();
-        var audio = new Audio('./audio/' + owner + td.getTime()%2 + '.wav');
+        var audio = new Audio('./audio/' + name_2_letter[owner] + td.getTime()%2 + '.wav');
         if(sound)
         audio.play();
     }
@@ -74,7 +74,7 @@ function videoNoti(profile,target,owner,text,pic,sound)//头像 点击跳转url 
     }
     notification.onshow=function(){
         var td=new Date();
-        var audio = new Audio('./audio/' + owner + td.getTime()%2 + '.wav');
+        var audio = new Audio('./audio/' + name_2_letter[owner] + td.getTime()%2 + '.wav');
         if(sound)
         audio.play();
     }
@@ -94,7 +94,7 @@ function forwardNoti(profile,target,owner,text,sound)
     }
     notification.onshow=function(){
         var td=new Date();
-        var audio = new Audio('./audio/' + owner + td.getTime()%2 + '.wav');
+        var audio = new Audio('./audio/' + name_2_letter[owner] + td.getTime()%2 + '.wav');
         if(sound)
         audio.play();
     }
@@ -115,7 +115,7 @@ function columnNoti(profile,target,owner,text,pic,sound)
     }
     notification.onshow=function(){
         var td=new Date();
-        var audio = new Audio('./audio/' + owner + td.getTime()%2 + '.wav');
+        var audio = new Audio('./audio/' + name_2_letter[owner] + td.getTime()%2 + '.wav');
         if(sound)
         audio.play();
     }

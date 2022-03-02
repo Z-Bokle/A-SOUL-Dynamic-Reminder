@@ -15,6 +15,13 @@
     "background":{
         "page":"background.html"
     },
+    "content_scripts":[
+        {
+            "matches":["https://live.bilibili.com/*","http://live.bilibili.com/*"],
+            "js":["./js/jquery-3.6.0.min.js","./js/bili-live.js"],
+            "runat":"document_start"
+        }
+    ],
     "permissions":["storage","notifications","alarms","http://*/","https://*/"],
     "homepage_url":"https://github.com/Z-Bokle/A-SOUL-Dynamic-Reminder"
 }

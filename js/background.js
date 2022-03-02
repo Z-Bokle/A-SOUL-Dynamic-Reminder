@@ -37,6 +37,15 @@ var settings={'ava':1,'bella':1,'carol':1,'diana':1,'eileen':1,'asoul':1,'sound'
 
 var init_status={'ava':0,'bella':0,'carol':0,'diana':0,'eileen':0,'asoul':0}//初始化成功项目数(每人最多两项)
 
+var name_2_letter={
+    '向晚大魔王':'ava',
+    '贝拉kira':'bella',
+    '珈乐Carol':'carol',
+    '嘉然今天吃什么':'diana',
+    '乃琳Queen':'eileen',
+    'A-SOUL_Official':'A-SOUL_Official'
+}
+
 function update_settings(obj){//更新设置
     var views = chrome.extension.getViews({type:'popup'});
     if(views.length > 0) {
@@ -555,4 +564,6 @@ chrome.alarms.onAlarm.addListener(function(alarm){
 
 });
 
-
+// 首次安装或更新时执行
+// var manifest=chrome.runtime.getManifest(); //获取清单文件信息
+// chrome.runtime.onInstalled.addListener(function(){alert("欢迎使用" + manifest.name + "\n当前版本为:" + manifest.version)});
