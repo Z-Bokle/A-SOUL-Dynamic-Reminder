@@ -1,5 +1,8 @@
 # A-SOUL-Dynamic-Reminder
-readme开摆了，能看明白就行_(:з」∠)_  
+该仓库仅存放Manifest V2的ADR源代码
+V3对代码进行了一定程度的重构，请访问
+https://github.com/Z-Bokle/A-SOUL-Dynamic-Reminder-V3
+V2版本预计将停止更新
 
 ## 注意事项  
 1.该插件在Windows 10 + Microsoft Edge平台上开发并测试，其他平台暂未做过测试，Chrome及使用其内核的浏览器理论上兼容；  
